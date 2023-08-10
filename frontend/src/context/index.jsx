@@ -21,7 +21,6 @@ export const StateContextProvider = ({ children }) => {
 
   const publishBlog = async (form) => {
     try {
-      console.log(form);
       const data = await addblog({
         args: [
           form.title,

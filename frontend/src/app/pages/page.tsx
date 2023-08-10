@@ -20,13 +20,14 @@ type blog = {
 
 const BlogForm = () => {
 
-    const { publishBlog } = useStateContext();
+
+    const { publishBlog,connect } = useStateContext();
     const blogMeta = useAppSelector((state) => state.blogReducer);
     const widgetState = useAppSelector((state) => state.widgetReducer);
     const dispatch = useDispatch();
     const [topics,setTopics] = useState([]);
     
-    const toSend = JSON.stringify({
+    const toSend = {
         title:blogMeta.title,
         types:blogMeta.types,
         className:blogMeta.className,
@@ -35,9 +36,10 @@ const BlogForm = () => {
         topics:blogMeta.topics,
         thumbnail:blogMeta.thumbnail,
         timeToRead:blogMeta.timeToRead
-    });
+    };
 
     const handleBlogSumbit = async() => {
+        await connect();
 
         await publishBlog(
             toSend
