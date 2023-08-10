@@ -4,7 +4,7 @@ import { useState} from "react";
 
 import React from 'react';
 import axios from "axios";
-import bootstrap from "bootstrap";
+import bootstrap from "bootstrap"
 
 const page = () => {
   

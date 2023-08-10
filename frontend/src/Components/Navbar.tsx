@@ -11,9 +11,9 @@ const Navbar = (props:any) => {
     }
     return (
         <div className={styles.navbar}>
-            <img src='images/Logo.png'/>
+            <img src='https://i.ibb.co/gMVN8DN/Whats-App-Image-2023-08-11-at-05-06-29-1.jpg'/>
             <div className={styles.profile} onClick={handlePopUp}>
-                <img src='txt' className={styles.profilePhoto}/>
+                <img src='https://i.ibb.co/PhD4MCW/Whats-App-Image-2023-08-11-at-05-06-29.jpg' className={styles.profilePhoto}/>
                 {popup?
                 <div className={styles.popUp}>   
                     <Link href="/Profile">Profile</Link>
