@@ -6,11 +6,12 @@ import { blogSlice } from "@/Store/Slices/Blog"
 import { useDispatch } from "react-redux"
 import { useAppSelector } from "@/Store/Store"
 import { useState } from "react";
+import { useStateContext } from "../../context";
 import Widget from "@/Components/Widget";
 
 
 const BlogForm = () => {
-
+    const { publishBlog,address, connect } = useStateContext();
     const blog = useAppSelector((state) => state.blogReducer.blog);
     const blogMeta = useAppSelector((state) => state.blogReducer);
     const widgetState = useAppSelector((state) => state.widgetReducer);
@@ -19,14 +20,16 @@ const BlogForm = () => {
 
     const toSend = JSON.stringify({
         title:blogMeta.title,
+        blog:blog,
+        topics:blogMeta.topics,
         thumbnail:blogMeta.thumbnail,
         timeToRead:blogMeta.timeToRead,
-        topics:blogMeta.topics,
-        blog:blog
     });
 
-    const handleBlogSumbit = () => {
-        console.log(toSend);
+    const handleBlogSumbit = async() => {
+        await publishBlog(
+            toSend
+          );
     }
 
 
