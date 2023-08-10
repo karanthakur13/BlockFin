@@ -6,7 +6,6 @@ import { blogSlice } from "@/Store/Slices/Blog"
 import { useDispatch } from "react-redux"
 import { useAppSelector } from "@/Store/Store"
 import { useState } from "react";
-import { useStateContext } from "../../context";
 import Widget from "@/Components/Widget";
 
 type blog = {
@@ -17,7 +16,7 @@ type blog = {
 }
 
 const BlogForm = () => {
-    const { publishBlog,address, connect } = useStateContext();
+
     const blog = useAppSelector((state) => state.blogReducer.blog);
     const blogMeta = useAppSelector((state) => state.blogReducer);
     const widgetState = useAppSelector((state) => state.widgetReducer);
@@ -26,22 +25,18 @@ const BlogForm = () => {
 
     const toSend = JSON.stringify({
         title:blogMeta.title,
-        blog:blog,
+        types:blog.forEach(ele => ele._type),
+        className:blog.forEach(ele => ele._className),
+        children:blog.forEach(ele => ele._children),
+        src:blog.forEach(ele => ele._src),
         topics:blogMeta.topics,
         thumbnail:blogMeta.thumbnail,
-        timeToRead:blogMeta.timeToRead,
+        timeToRead:blogMeta.timeToRead
     });
 
-<<<<<<< Updated upstream
-    const handleBlogSumbit = async() => {
-        await publishBlog(
-            toSend
-          );
-=======
     const handleBlogSumbit = () => {
 
         console.log(toSend);
->>>>>>> Stashed changes
     }
 
 
