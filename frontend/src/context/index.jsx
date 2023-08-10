@@ -40,9 +40,10 @@ export const StateContextProvider = ({ children }) => {
     }
   };
 
-  const fetchblog = async (_productId) => {
+  const fetchblog = async () => {
     try {
-      const data = await contract.call("getBlogs", [_productId]);
+      const data = await contract.call("getBlogs");
+
       console.info("contract call success");
       return data;
     } catch (err) {

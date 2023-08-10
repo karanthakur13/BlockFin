@@ -21,7 +21,7 @@ type blog = {
 const BlogForm = () => {
 
 
-    const { publishBlog,connect } = useStateContext();
+    const { publishBlog,connect,address } = useStateContext();
     const blogMeta = useAppSelector((state) => state.blogReducer);
     const widgetState = useAppSelector((state) => state.widgetReducer);
     const dispatch = useDispatch();
@@ -40,10 +40,11 @@ const BlogForm = () => {
 
     const handleBlogSumbit = async() => {
         await connect();
-
-        await publishBlog(
+        const data = await publishBlog(
             toSend
           );
+    const num = data.receipt.events[0].args.index;
+        
     }
 
 
