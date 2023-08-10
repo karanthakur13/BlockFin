@@ -113,6 +113,7 @@ export const blogSlice = createSlice({
         addPara : (state,action:PayloadAction<PayLoadType>) => {
             
             if(action.payload.type === "submit"){
+                console.log(state.para);
                 return {
                     ...state,
                     blog:state.blog.concat(React.createElement("p",{className:"para"},state.para)),

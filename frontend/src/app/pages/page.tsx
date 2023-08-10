@@ -25,6 +25,10 @@ const BlogForm = () => {
         blog:blog
     });
 
+    const handleBlogSumbit = () => {
+        console.log(toSend);
+    }
+
 
     const handleTitleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         console.log(blogMeta.title);
@@ -34,7 +38,7 @@ const BlogForm = () => {
         dispatch(blogSlice.actions.addThumbnail({type:"change",value:e.target.value}));
     }
     const handleImageChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-        // dispatch(blogSlice.actions.addImage(e.target.value));
+        dispatch(blogSlice.actions.addImage({type:"change",value:e.target.value}));
     }
     const handleParaChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         dispatch(blogSlice.actions.addPara({type:"change",value:e.target.value}));
@@ -91,11 +95,11 @@ const BlogForm = () => {
             </div>
             {blog?
             blog.map((ele:React.ReactElement) => 
-            {   console.log(ele);
-                return React.createElement(ele.type,ele.props);
+            {  
+                 return React.createElement(ele.type,ele.props);
             })
             :null}
-            <button>Submit</button>
+            <button onClick={handleBlogSumbit}>Submit</button>
             </div>
         </div>
     )
