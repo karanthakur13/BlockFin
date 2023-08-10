@@ -10,6 +10,7 @@ export default function Page() {
             <Navbar/>
             <Link href="/pages">Create a Post</Link>
             <Link href="/home">Home</Link>
+            <Link href="/login">Login</Link>
         </div>
   </div>
 }
