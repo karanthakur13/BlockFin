@@ -21,7 +21,7 @@ const BlogForm = () => {
         title:blogMeta.title,
         thumbnail:blogMeta.thumbnail,
         timeToRead:blogMeta.timeToRead,
-        date:new Date(),
+        topics:blogMeta.topics,
         blog:blog
     });
 
