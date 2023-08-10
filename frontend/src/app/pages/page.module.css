@@ -1,0 +1,61 @@
+.blogWrite{
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.blogWriteInner{
+    width: 50vw;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+.blogWrite input{
+    font-size: 1.5rem;
+}
+.blogWrite button{
+    font-size: 1.5rem;
+}
+.blogWriteInner .thumbnail{
+    display: flex;
+    height: 30vh;
+    gap:40px;
+    
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px black solid;
+    border-radius: 12px;
+}
+.thumbnail input[type=file]{
+    display: none;
+}
+.thumbnail label{
+    cursor: pointer;
+}
+.thumbnail h1{
+    font-size: 2rem;
+    font-weight: 300;
+}
+.blogWrite .title{
+    display: flex;
+    flex-direction: column;
+}
+.blogWidget{
+    height: 30vh;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px black solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.blogWidget .widgetInput{
+    border-radius: 12px;
+    border: 1px black solid;
+    height: 100%;
+    width: 90%;
+}
