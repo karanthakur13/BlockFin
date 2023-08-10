@@ -6,6 +6,8 @@ export default function Home() {
   return <div>
     <div>
             <Link href="/pages">Create a Post</Link>
+            <Link href="/home">Home</Link>
+
         </div>
   </div>
 }
