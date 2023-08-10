@@ -7,7 +7,6 @@ export default function Home() {
     <div>
             <Link href="/pages">Create a Post</Link>
             <Link href="/home">Home</Link>
-
         </div>
   </div>
 }
