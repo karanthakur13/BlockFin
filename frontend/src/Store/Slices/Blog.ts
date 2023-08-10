@@ -12,16 +12,13 @@ type PayLoadArray = {
     value:string[]
 }
 
-type blog = {
-    _type:string,
-    _className:string,
-    _children:string,
-    _src:string
-}
 type BlogValue = {
     title:string,
     thumbnail:string,
-    blog:blog[],
+    types:string[],
+    src:string[],
+    children:string[],
+    className:string[],
     topics:string[],
     h1:string,
     h2:string,
@@ -33,7 +30,10 @@ type BlogValue = {
 const initialState  = {
         title:"",
         thumbnail:"",
-        blog:[],
+        types:[],
+        src:[],
+        children:[],
+        className:[],
         topics:[],
         h1:"",
         h2:"",
@@ -50,7 +50,10 @@ export const blogSlice = createSlice({
             if(action.payload.type === "submit"){
                 return {
                     ...state,
-                    blog:state.blog.concat({_type:"img",_className:"blogImage",_children:"",_src:state.image}),
+                    src:state.src.concat(state.image),
+                    className:state.className.concat("blogImage"),
+                    types:state.types.concat("img"),
+                    children:state.types.concat(""),
                     image:""
                 }
             }
@@ -89,7 +92,10 @@ export const blogSlice = createSlice({
             if(action.payload.type === "submit"){
                 return {
                     ...state,
-                    blog:state.blog.concat({_type:"h1",_className:"blogH1",_children:state.h1,_src:""}),
+                    src:state.src.concat(""),
+                    className:state.className.concat("blogH1"),
+                    types:state.types.concat("h1"),
+                    children:state.types.concat(state.h1),
                     h1:""
                 }
             }else{
@@ -104,7 +110,10 @@ export const blogSlice = createSlice({
             if(action.payload.type === "submit"){
                 return {
                     ...state,
-                    blog:state.blog.concat({_type:"h2",_className:"blogH2",_children:state.h2,_src:""}),
+                    src:state.src.concat(""),
+                    className:state.className.concat("blogH2"),
+                    types:state.types.concat("h2"),
+                    children:state.types.concat(state.h2),
                     h2:""
                 }
             }
@@ -122,7 +131,10 @@ export const blogSlice = createSlice({
                 console.log(state.para);
                 return {
                     ...state,
-                    blog:state.blog.concat({_type:"p",_className:"blogPara",_children:state.para,_src:""}),
+                    src:state.src.concat(""),
+                    className:state.className.concat("blogPara"),
+                    types:state.types.concat("p"),
+                    children:state.types.concat(state.para),
                     para:""
                 }
             }else{

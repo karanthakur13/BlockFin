@@ -11,7 +11,7 @@ const StateContext = createContext();
 
 export const StateContextProvider = ({ children }) => {
   const { contract } = useContract(
-    "0xA5593C5b7827B736bF2a17A9da6764D7796BfB62"
+    "0x71b4cc3e1B129b289f3531B38839cA1B6dfb6F56"
   );
 
   const { mutateAsync: addblog } = useContractWrite(contract, "addblog");
@@ -25,7 +25,10 @@ export const StateContextProvider = ({ children }) => {
       const data = await addblog({
         args: [
           form.title,
-          form.blog,
+          form.types,
+          form.className,
+          form.children,
+          form.src,
           form.topics,
           form.thumbnail,
           form.timeToRead,

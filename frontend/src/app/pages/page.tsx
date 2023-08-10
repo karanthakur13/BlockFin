@@ -7,6 +7,9 @@ import { useDispatch } from "react-redux"
 import { useAppSelector } from "@/Store/Store"
 import { useState } from "react";
 import Widget from "@/Components/Widget";
+import { types } from "util"
+import { useStateContext } from "@/context"
+
 
 type blog = {
     _type:string,
@@ -17,26 +20,28 @@ type blog = {
 
 const BlogForm = () => {
 
-    const blog = useAppSelector((state) => state.blogReducer.blog);
+    const { publishBlog } = useStateContext();
     const blogMeta = useAppSelector((state) => state.blogReducer);
     const widgetState = useAppSelector((state) => state.widgetReducer);
     const dispatch = useDispatch();
     const [topics,setTopics] = useState([]);
-
+    
     const toSend = JSON.stringify({
         title:blogMeta.title,
-        types:blog.forEach(ele => ele._type),
-        className:blog.forEach(ele => ele._className),
-        children:blog.forEach(ele => ele._children),
-        src:blog.forEach(ele => ele._src),
+        types:blogMeta.types,
+        className:blogMeta.className,
+        children:blogMeta.children,
+        src:blogMeta.src,
         topics:blogMeta.topics,
         thumbnail:blogMeta.thumbnail,
         timeToRead:blogMeta.timeToRead
     });
 
-    const handleBlogSumbit = () => {
+    const handleBlogSumbit = async() => {
 
-        console.log(toSend);
+        await publishBlog(
+            toSend
+          );
     }
 
 
@@ -76,7 +81,6 @@ const BlogForm = () => {
     }
     const handleAddPara = () => {
         dispatch(blogSlice.actions.addPara({type:"submit",value:""}));
-        console.log(blog);
     }
     const handleAddImage = () => {
         dispatch(blogSlice.actions.addImage({type:"submit",value:""}));
@@ -103,13 +107,12 @@ const BlogForm = () => {
             {widgetState.h2?<div className={styles.widgetInput}><input type="text" onChange={handleH2Change} name='h2'/><button onClick={handleAddH2}>Add</button></div>:null}
             <Widget/>
             </div>
-            {blog?
-            blog.map((ele:blog) => 
-            {   
-                if(ele._type == "img"){
-                    return React.createElement(ele._type,{className:ele._className,src:ele._src});
+            {blogMeta.types?
+            blogMeta.types.map((type) => {   
+                if(type == "img"){
+                    return React.createElement(type);
                 }
-                 return React.createElement(ele._type,{className:ele._className},ele._children);
+                 return React.createElement(type);
             })
             :null}
             <button onClick={handleBlogSumbit}>Submit</button>
