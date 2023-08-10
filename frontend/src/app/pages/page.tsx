@@ -9,6 +9,12 @@ import { useState } from "react";
 import { useStateContext } from "../../context";
 import Widget from "@/Components/Widget";
 
+type blog = {
+    _type:string,
+    _className:string,
+    _children:string,
+    _src:string
+}
 
 const BlogForm = () => {
     const { publishBlog,address, connect } = useStateContext();
@@ -26,10 +32,16 @@ const BlogForm = () => {
         timeToRead:blogMeta.timeToRead,
     });
 
+<<<<<<< Updated upstream
     const handleBlogSumbit = async() => {
         await publishBlog(
             toSend
           );
+=======
+    const handleBlogSumbit = () => {
+
+        console.log(toSend);
+>>>>>>> Stashed changes
     }
 
 
@@ -97,9 +109,12 @@ const BlogForm = () => {
             <Widget/>
             </div>
             {blog?
-            blog.map((ele:React.ReactElement) => 
-            {  
-                 return React.createElement(ele.type,ele.props);
+            blog.map((ele:blog) => 
+            {   
+                if(ele._type == "img"){
+                    return React.createElement(ele._type,{className:ele._className,src:ele._src});
+                }
+                 return React.createElement(ele._type,{className:ele._className},ele._children);
             })
             :null}
             <button onClick={handleBlogSumbit}>Submit</button>

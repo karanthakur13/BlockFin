@@ -12,10 +12,16 @@ type PayLoadArray = {
     value:string[]
 }
 
+type blog = {
+    _type:string,
+    _className:string,
+    _children:string,
+    _src:string
+}
 type BlogValue = {
     title:string,
     thumbnail:string,
-    blog:React.ReactElement[],
+    blog:blog[],
     topics:string[],
     h1:string,
     h2:string,
@@ -27,7 +33,7 @@ type BlogValue = {
 const initialState  = {
         title:"",
         thumbnail:"",
-        blog:[React.createElement('div')],
+        blog:[],
         topics:[],
         h1:"",
         h2:"",
@@ -44,7 +50,7 @@ export const blogSlice = createSlice({
             if(action.payload.type === "submit"){
                 return {
                     ...state,
-                    blog:state.blog.concat(React.createElement("img",{src:state.image})),
+                    blog:state.blog.concat({_type:"img",_className:"blogImage",_children:"",_src:state.image}),
                     image:""
                 }
             }
@@ -83,7 +89,7 @@ export const blogSlice = createSlice({
             if(action.payload.type === "submit"){
                 return {
                     ...state,
-                    blog:state.blog.concat(React.createElement("h1",{className:"h1"},state.h1)),
+                    blog:state.blog.concat({_type:"h1",_className:"blogH1",_children:state.h1,_src:""}),
                     h1:""
                 }
             }else{
@@ -98,7 +104,7 @@ export const blogSlice = createSlice({
             if(action.payload.type === "submit"){
                 return {
                     ...state,
-                    blog:state.blog.concat(React.createElement("h2",{className:"h2"},state.h2)),
+                    blog:state.blog.concat({_type:"h2",_className:"blogH2",_children:state.h2,_src:""}),
                     h2:""
                 }
             }
@@ -116,7 +122,7 @@ export const blogSlice = createSlice({
                 console.log(state.para);
                 return {
                     ...state,
-                    blog:state.blog.concat(React.createElement("p",{className:"para"},state.para)),
+                    blog:state.blog.concat({_type:"p",_className:"blogPara",_children:state.para,_src:""}),
                     para:""
                 }
             }else{
