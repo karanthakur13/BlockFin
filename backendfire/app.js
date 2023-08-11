@@ -82,8 +82,9 @@ app.get("/api/getUser", async (req, res) => {
   res.json(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 });
 
+
 app.post("/api/scoreUpdate", async (req, res) => {
-  console.log(req.body)
+  console.log(req.body);
   const { metaID,blogID, vote } = req.body;
   const queryRef = query(collectionDetails, where("metaID", "==", metaID));
   const bigData = await getDocs(queryRef);
@@ -91,20 +92,21 @@ app.post("/api/scoreUpdate", async (req, res) => {
   console.log(data);
   let docData;
   for (let i = 0; i < data.length; i++) {
-    if (data[i].metaID == metaID) {
+    if (metaID.toString()==data[i].metaID.toString()) {
       docData = data[i];
       break;
     }
   }
   const blogs=docData.blogs;
+  console.log(blogs)
   let currBlog;
   for(let i=0;i<blogs.length;i++){
-    if(blogs[i].blogID==blogID){
+    if(blogs[i].blogID?.hex?.toString()==blogID.toString()){
         currBlog=blogs[i];
         break;
     }
   }
-  if (vote) {
+  if (vote == '1') {
     // upvote
     currBlog.upvote+=1;
     const newScore = currBlog.upvote-0.25*currBlog.downvote;

@@ -11,26 +11,17 @@ const RewardContext = createContext();
 
 export const RewardContextProvider = ({ children }) => {
   const { contract } = useContract(
-    "0xd87560990E4e6fD69369f984A6E0f02C6C8c7C31"
+    "0xEC4839d2A49b2167767F1743A3810A70Dfc3d368"
   );
 
   const address = useAddress();
   const connect = useMetamask();
   const { mutateAsync: giveReward } = useContractWrite(contract, "giveReward");
 
-  const publishBlog = async (form) => {
+  const Reward = async (_address, _reward) => {
     try {
       const data = await giveReward({
-        args: [
-          add
-          form.types,
-          form.className,
-          form.children,
-          form.src,
-          form.topics,
-          form.thumbnail,
-          form.timeToRead,
-        ],
+        args: [_address, _reward],
       });
 
       console.log("successful", data);
@@ -38,6 +29,17 @@ export const RewardContextProvider = ({ children }) => {
       console.log("try again", error);
     }
   };
+  return (
+    <RewardContext.Provider
+      value={{
+        contract,
+        Reward,
+        address,
+      }}
+    >
+      {children}
+    </RewardContext.Provider>
+  );
 };
 
 export const useRewardContext = () => useContext(RewardContext);
