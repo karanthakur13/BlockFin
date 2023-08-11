@@ -44,6 +44,8 @@ const BlogForm = () => {
             toSend
           );
     const num = data.receipt.events[0].args.index;
+
+    
         
     }
 
