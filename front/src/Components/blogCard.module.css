@@ -1,0 +1,15 @@
+.blogCard{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+    border: 1px #D4D4D4 solid;
+    border-radius: 12px;
+    background-color: white;
+    padding: 20px;
+}
+.blogCard .top{
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: space-between;
+}

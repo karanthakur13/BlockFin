@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
+import styles from './app.module.css';
+import axios from 'axios'
 
 function App() {
   
@@ -41,7 +43,7 @@ function App() {
         }
     }
     
-    const handleSignUp = async (e:any) => {
+    const handleSignUp = async (e) => {
       e.preventDefault();
       try {
         const { data } = await axios.post(
@@ -169,7 +171,7 @@ function App() {
                   required
                 />
               </div>
-              <button className="btn btn-primary">NEXT</button>
+              <button className="btn btn-primary" onClick={handleSignUp}>NEXT</button>
               {/* <h4 style={{ marginTop: "1rem" }}>Or</h4> */}
             </form>
           </div>

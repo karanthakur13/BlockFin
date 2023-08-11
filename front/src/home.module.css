@@ -1,0 +1,38 @@
+.home{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 20px;
+}
+
+.home .blogs{
+    width: 40vw;
+}
+
+.home .bottom{
+    display: flex;
+    gap: 40px;
+}
+
+.home .search{
+    width: 45vw;
+    font-size: 2rem;
+    font-weight: 100;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px #D4D4D4 solid;
+}
+.home input::placeholder{
+    text-align: center;
+}
+.home .createPost{
+    font-size: 1.8rem;
+    text-align: center;
+    background-color: white;
+    border-radius: 12px;
+    padding: 10px;
+    border: 1px #D4D4D4 solid;
+}
