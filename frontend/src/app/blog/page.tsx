@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import styles from "./page.module.css"
+import { useRouter } from "next/navigation";
 
 
 type BlogProps = {
@@ -16,6 +17,11 @@ type BlogProps = {
 const Blog = (props:BlogProps) => {
 
     const blogPosts = [];
+    const router = useRouter();
+  const query = router.query;
+  const name = query;
+  console.log(name);
+  
 
     for (let i = 0; i < props.blog.types.length; i++) {
         let blogPost;
@@ -29,9 +35,9 @@ const Blog = (props:BlogProps) => {
 
     return (
         <div>
-            {blogPosts.map((ele) => {
+            {blogPosts?blogPosts.map((ele) => {
                 return ele;
-            })}
+            }):null}
         </div>
     )
 }

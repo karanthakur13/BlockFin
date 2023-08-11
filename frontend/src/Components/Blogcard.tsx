@@ -3,6 +3,7 @@ import React from "react";
 import { useState,useEffect } from "react";
 import styles from "./blogCard.module.css"
 import { useStateContext } from "@/context";
+import Link from "next/link";
 
 const BlogCard = (props:any) => {
     
@@ -16,6 +17,10 @@ const BlogCard = (props:any) => {
                 </div>
                 <h1>{props.blogData.title}</h1>
                 <p>{string.length>200?string.slice(0,200):string}</p>
+                <Link href={{
+                    pathname:'./blog',
+                    query:props.blogData.ID
+                }}>More</Link>
             </div>
         </div>
     )
