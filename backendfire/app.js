@@ -83,6 +83,7 @@ app.get("/api/getUser", async (req, res) => {
 });
 
 app.post("/api/scoreUpdate", async (req, res) => {
+  console.log(req.body)
   const { metaID,blogID, vote } = req.body;
   const queryRef = query(collectionDetails, where("metaID", "==", metaID));
   const bigData = await getDocs(queryRef);
@@ -107,11 +108,13 @@ app.post("/api/scoreUpdate", async (req, res) => {
     // upvote
     currBlog.upvote+=1;
     const newScore = currBlog.upvote-0.25*currBlog.downvote;
+    currBlog.coinToSend = false;
     currBlog.currentscore=newScore;
     if (newScore > currBlog.maxScore) {
       if ((5 * Math.pow(2.71,currBlog.coins) <= newScore)) {
         currBlog.coins+=1;
         currBlog.maxScore = newScore;
+        currBlog.coinToSend = true;
         
       }
       else if(newScore > currBlog.maxScore){
@@ -135,8 +138,8 @@ app.post("/api/scoreUpdate", async (req, res) => {
     blogs: blogs
   });
   console.log(currBlog.currentscore)
+
   res.send(currBlog);
-//   console.log(docData);
 });
 
 app.get("/api/sortBlogs", async (req, res) => {
@@ -191,6 +194,6 @@ app.post("/api/postBlog", async (req, res) => {
   res.send(result);
 });
 
-app.listen(5000, () => {
+app.listen(5001, () => {
   console.log("Server started on port 5000");
 });

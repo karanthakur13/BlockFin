@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import styles from "./page.module.css";
 import { blogSlice } from "../Store/Slices/Blog";
@@ -8,6 +6,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import Widget from "../Components/Widget";
 import { useStateContext } from "../context";
+import Navbar from "../Components/Navbar";
 
 const Createblog = () => {
   const { publishBlog, connect, address } = useStateContext();
@@ -27,6 +26,19 @@ const Createblog = () => {
     timeToRead: blogMeta.timeToRead,
   };
 
+  let actualRender=[];
+  for(let i=0;i<blogMeta.types.length;i++){
+    console.log({type:blogMeta.types[i],
+      children:blogMeta.children[i],
+      className:blogMeta.className[i],
+      src:blogMeta.src[i]});
+    actualRender.push({
+      type:blogMeta.types[i],
+      children:blogMeta.children[i],
+      className:blogMeta.className[i],
+      src:blogMeta.src[i]
+    })
+  }
   const handleBlogSumbit = async () => {
     await connect();
     const data = await publishBlog(toSend);
@@ -89,6 +101,8 @@ const Createblog = () => {
   };
 
   return (
+    <div className={styles.wrapper}>
+      <Navbar/>
     <div className={styles.blogWrite}>
       <div className={styles.blogWriteInner}>
         <div className={styles.thumbnail}>
@@ -124,6 +138,7 @@ const Createblog = () => {
             value={blogMeta.title}
           />
         </div>
+        <label>Blog</label>
         <div className={styles.blogWidget}>
           {widgetState.para ? (
             <div className={styles.widgetInput}>
@@ -138,34 +153,35 @@ const Createblog = () => {
           ) : null}
           {widgetState.img ? (
             <div className={styles.widgetInput}>
-              <input type="text" onChange={handleImageChange} name="Image" />
+              <input type="text" onChange={handleImageChange} name="Image" placeholder="Image URL" />
               <button onClick={handleAddImage}>Add</button>
             </div>
           ) : null}
           {widgetState.h1 ? (
             <div className={styles.widgetInput}>
-              <input type="text" onChange={handleH1Change} name="h1" />
+              <input type="text" onChange={handleH1Change} name="h1" placeholder="h1" />
               <button onClick={handleAddH1}>Add</button>
             </div>
           ) : null}
           {widgetState.h2 ? (
             <div className={styles.widgetInput}>
-              <input type="text" onChange={handleH2Change} name="h2" />
+              <input type="text" onChange={handleH2Change} name="h2" placeholder="h2"/>
               <button onClick={handleAddH2}>Add</button>
             </div>
           ) : null}
           <Widget />
         </div>
-        {blogMeta.types
-          ? blogMeta.types.map((type) => {
-              if (type == "img") {
-                return React.createElement(type);
+        {actualRender
+          ? actualRender.map((ele) => {
+              if (ele.type == "img") {
+                return React.createElement(ele.type,{className:ele.className,src:ele.src});
               }
-              return React.createElement(type);
+              return React.createElement(ele.type,{className:ele.className},ele.children);
             })
           : null}
-        <button onClick={handleBlogSumbit}>Submit</button>
+        <button onClick={handleBlogSumbit} className={styles.blogButton}>Submit</button>
       </div>
+    </div>
     </div>
   );
 };

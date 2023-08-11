@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import styles from './login.module.css';
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -8,7 +9,7 @@ function Login() {
   const [uid, setUid] = useState("");
   const handleNewAccount = () => {
     // Implement your logic for creating a new account here
-    setLogin(false);
+    setLogin(!login);
   };
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -66,19 +67,11 @@ function Login() {
     }
   };
   return (
-    <div>
+    <div className={styles.login}>
       {login ? (
         <div>
-          <form
-            style={{
-              width: "40%",
-              position: "absolute",
-              top: "20%",
-              left: "30%",
-            }}
-            onSubmit={handleLogin}
-          >
-            <div className="mb-3">
+          <form onSubmit={handleLogin}>
+            <div className={styles.username}>
               <label htmlFor="Email" className="form-label">
                 Email address
               </label>
@@ -95,7 +88,7 @@ function Login() {
                 We'll never share your email with anyone else.
               </div>
             </div>
-            <div className="mb-3">
+            <div className={styles.password}>
               <label htmlFor="password" className="form-label">
                 Password
               </label>
@@ -108,8 +101,8 @@ function Login() {
                 required
               />
             </div>
-            <button type="submit" className="btn btn-primary">
-              Login
+            <button type="submit" className={styles.loginButton}>
+              Submit -&gt;
             </button>
             {/* <h4 style={{ marginTop: "1rem" }}>Or</h4/> */}
           </form>
@@ -122,21 +115,12 @@ function Login() {
               Create New Account
             </span>
           </p>
-          <p>or</p>
-          <h3>Login</h3>
         </div>
       ) : (
-        <div>
-          <form
-            style={{
-              width: "40%",
-              position: "absolute",
-              top: "20%",
-              left: "30%",
-            }}
-          >
-            <div className="mb-3">
-              <label htmlFor="Email" className="form-label">
+        <div className={styles.signup}>
+          <form>
+            <div className={styles.signIn}>
+              <label htmlFor="Email" className={styles.username}>
                 Email address
               </label>
               <input
@@ -152,7 +136,7 @@ function Login() {
                 We'll never share your email with anyone else.
               </div>
             </div>
-            <div className="mb-3">
+            <div className={styles.password}>
               <label htmlFor="password" className="form-label">
                 Password
               </label>
@@ -166,10 +150,19 @@ function Login() {
               />
             </div>
             <button className="btn btn-primary" onClick={handleSignUp}>
-              NEXT
+              Next -&gt;
             </button>
             {/* <h4 style={{ marginTop: "1rem" }}>Or</h4> */}
           </form>
+          <p>
+            Already a User?{" "}
+            <span
+              style={{ textDecoration: "underline", cursor: "pointer" }}
+              onClick={handleNewAccount}
+            >
+              Login
+            </span>
+          </p>
         </div>
       )}
     </div>

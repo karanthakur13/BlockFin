@@ -1,11 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap');
+.wrapper{
+    margin: 0;
+    padding: 0;
+}
 .blogWrite{
+    font-family: 'Poppins',sans-serif;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     background-color: white;
     font-size: 2rem;
     display: flex;
     justify-content: center;
 }
+.blogWrite input{border:1px #C2C2C2 solid;}
 
 .blogWriteInner{
     width: 50vw;
@@ -15,6 +22,7 @@
 }
 .blogWrite input{
     font-size: 1.5rem;
+    border-radius: 12px;
 }
 .blogWrite button{
     font-size: 1.5rem;
@@ -23,15 +31,14 @@
     display: flex;
     height: 30vh;
     gap:40px;
-    
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px black solid;
+    border: 1px #C2C2C2 solid;
     border-radius: 12px;
 }
-.thumbnail input[type=file]{
-    display: none;
+.thumbnail input{
+    border:1px #C2C2C2 solid;
 }
 .thumbnail label{
     cursor: pointer;
@@ -41,14 +48,19 @@
     font-weight: 300;
 }
 .blogWrite .title{
+    
     display: flex;
     flex-direction: column;
 }
+.blogWrite .title input{
+    font-size: 2rem;
+    padding: 10px;
+}
 .blogWidget{
-    height: 30vh;
+    height: 200px;
     padding: 20px;
     border-radius: 12px;
-    border: 1px black solid;
+    border:1px #C2C2C2 solid;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,4 +68,27 @@
 .blogWidget .widgetInput{
     height: 100%;
     width: 90%;
+}
+.blogWidget input{
+    font-size: 2rem;
+    padding: 10px;
+}
+.blogWidget button{
+    background-color: #8D99FF;
+    border-radius: 8px;
+    padding: 10px 20px 10px 20px;
+    color: white;
+    border: 0px;
+    cursor: pointer;
+    margin: 10px;
+}
+.blogButton{
+    background-color: #8D99FF;
+    color: white;
+    border-radius: 33px;
+    border: 0px;
+    align-self: flex-end;
+    font-size: 2rem;
+    padding: 10px 30px 10px 30px;
+    cursor: pointer;
 }

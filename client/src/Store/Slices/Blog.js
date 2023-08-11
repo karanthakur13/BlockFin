@@ -27,7 +27,7 @@ export const blogSlice = createSlice({
           src: state.src.concat(state.image),
           className: state.className.concat("blogImage"),
           types: state.types.concat("img"),
-          children: state.types.concat(""),
+          children: state.children.concat(""),
           image: "",
         };
       } else {
@@ -63,12 +63,13 @@ export const blogSlice = createSlice({
     },
     addH1: (state, action) => {
       if (action.payload.type === "submit") {
+        console.log(state.h1);
         return {
           ...state,
           src: state.src.concat(""),
           className: state.className.concat("blogH1"),
           types: state.types.concat("h1"),
-          children: state.types.concat(state.h1),
+          children: state.children.concat(state.h1),
           h1: "",
         };
       } else {
@@ -79,13 +80,15 @@ export const blogSlice = createSlice({
       }
     },
     addH2: (state, action) => {
+      
       if (action.payload.type === "submit") {
+        console.log(state.h2);
         return {
           ...state,
           src: state.src.concat(""),
           className: state.className.concat("blogH2"),
           types: state.types.concat("h2"),
-          children: state.types.concat(state.h2),
+          children: state.children.concat(state.h2),
           h2: "",
         };
       } else {
@@ -96,6 +99,7 @@ export const blogSlice = createSlice({
       }
     },
     addPara: (state, action) => {
+      
       if (action.payload.type === "submit") {
         console.log(state.para);
         return {
@@ -103,7 +107,7 @@ export const blogSlice = createSlice({
           src: state.src.concat(""),
           className: state.className.concat("blogPara"),
           types: state.types.concat("p"),
-          children: state.types.concat(state.para),
+          children: state.children.concat(state.para),
           para: "",
         };
       } else {

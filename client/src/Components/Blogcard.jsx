@@ -1,30 +1,39 @@
 "use client";
 import React from "react";
-import { useState, useEffect } from "react";
 import styles from "./blogCard.module.css";
-import { useStateContext } from "../context";
+import axios from 'axios';
+import { log } from "console";
 
 const BlogCard = (props) => {
-  const [string, setString] = useState(
-    "Any sustainable business must achieve two things: a way to attract and convert new customers to the product, and a way to retain existing ones. As time goes on, in a perfect world, we’d be serving both of these customer segments with an ever-improving value proposition.But as anyone who has released or sold a product before knows, this is never the path actually taken. At any given stage, no matter how straight you hope to trek, you’re always over-serving the requests of one of these two cohorts. And as a result, you’re always under-serving the requests of the other. In actuality, the path looks like this:"
-  );
+
+  const handleCoins = async (e) =>  {
+    console.log(props.blogData);
+    const val = e.target.value;
+    await axios.post("http://localhost:5001/api/scoreUpdate",{
+      metaID:props.blogData.publisher,
+      blogID:props.blogData.ID,
+      vote:val
+    },{
+      headers:{
+        "Content-Type":"application/json"
+      },
+    }).then((res) => {
+      res.json();
+    }).then(data => {
+      console.log(data);
+    });
+  }
+
   return (
     <div className={styles.blogCard}>
       <div className={styles.left}>
         <div className={styles.top}>
           <p>{props.blogData.publisher}</p>
-          <button>Save</button>
         </div>
-        <h1>{props.blogData.title}</h1>
-        <p>{string.length > 200 ? string.slice(0, 200) : string}</p>
-        {/* <Link
-          href={{
-            pathname: "./blog",
-            query: props.blogData.ID,
-          }}
-        >
-          More
-        </Link> */}
+        <h2>{props.blogData.title}</h2>
+        <p>{props.blogData.text}</p>
+        <button onClick={handleCoins} value={1}>upvote</button>
+        <button onClick={handleCoins} value={0}>downvote</button>
       </div>
     </div>
   );

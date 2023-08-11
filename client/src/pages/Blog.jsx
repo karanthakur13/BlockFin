@@ -12,12 +12,12 @@ const Blog = (props) => {
 //   console.log(name);
   
 
-    for (let i = 0; i < props.blog.types.length; i++) {
+    for (let i = 0; i < props.blog._types.length; i++) {
         let blogPost;
-        if(props.blog.types[i] == "img"){
-            blogPosts.push(React.createElement('img',{className:props.blog.children[i],src:props.blog.src[i]}));
+        if(props.blog._types[i] == "img"){
+            blogPosts.push(React.createElement('img',{className:props.blog._children[i],src:props.blog._src[i]}));
         }else{
-            blogPosts.push(React.createElement(props.blog.types[i],{className:props.blog.className[i],children:props.blog.children[i]}));
+            blogPosts.push(React.createElement(props.blog._types[i],{className:props.blog._className[i],children:props.blog._children[i]}));
         }
         blogPosts.push(blogPost);
     }

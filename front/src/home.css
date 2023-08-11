@@ -1,19 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap');
 .home{
-    font-family: 'Poppins',sans-serif;
     background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100vh;
     gap: 20px;
 }
-.home h1{
-    font-size: 3rem;
-    margin: 0;
-    font-weight: 300;
-    margin-bottom: 20px;
-}
+
 .home .blogs{
     width: 40vw;
 }
@@ -21,12 +15,6 @@
 .home .bottom{
     display: flex;
     gap: 40px;
-}
-.home .following{
-    margin-left: 20px;
-}
-.home .following Link{
-    text-decoration: none;
 }
 
 .home .search{

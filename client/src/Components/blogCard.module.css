@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap');
 .blogCard{
+    font-family: "Poppins",sans-serif;
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
@@ -7,6 +9,9 @@
     border-radius: 12px;
     background-color: white;
     padding: 20px;
+}
+.blogCard h2{
+    font-size: 1.5rem;
 }
 .blogCard .top{
     display: flex;
