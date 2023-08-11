@@ -3,12 +3,10 @@
 import { useState} from "react";
 import React from 'react';
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import styles from './page.module.css'
 // import bootstrap from "bootstrap"
 
 const page = () => {
-
-  const navigate = useNavigate();
   
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
@@ -65,7 +63,7 @@ const handleSignUp = async (e:any) => {
     );      
     console.log(data);
     setUid(uid);
-    navigate('/home');
+    window.location.pathname = '/home'
     // setIsAuthenticated(true);
     // setLoading(false);
   } catch (error) {
@@ -76,7 +74,7 @@ const handleSignUp = async (e:any) => {
   }
 }
 return (
-  <div>
+  <div className={styles.main}>
     {login ? (
       <div>
         <form
@@ -136,7 +134,7 @@ return (
         <h3>Login</h3>
       </div>
     ) : (
-      <div>
+      <div className={styles.main}>
         <form
           style={{
             width: "40%",
