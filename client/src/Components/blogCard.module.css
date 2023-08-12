@@ -18,3 +18,14 @@
     margin-bottom: 10px;
     justify-content: space-between;
 }
+.blogCard button{
+    border: none;
+    cursor: pointer;
+    background-color: #8D99FF;
+    color:white;
+    border-radius: 12px;
+    margin: 10px;
+    font-size: 1.2rem;
+    font-weight: 300;
+    padding: 10px;
+}

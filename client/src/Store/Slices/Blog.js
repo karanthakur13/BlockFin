@@ -80,7 +80,6 @@ export const blogSlice = createSlice({
       }
     },
     addH2: (state, action) => {
-      
       if (action.payload.type === "submit") {
         console.log(state.h2);
         return {
@@ -99,7 +98,6 @@ export const blogSlice = createSlice({
       }
     },
     addPara: (state, action) => {
-      
       if (action.payload.type === "submit") {
         console.log(state.para);
         return {

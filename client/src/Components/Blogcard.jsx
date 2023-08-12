@@ -4,8 +4,10 @@ import styles from "./blogCard.module.css";
 import axios from "axios";
 import { log } from "console";
 import { useRewardContext } from "../context/reward";
+import { useNavigate } from "react-router";
 
 const BlogCard = (props) => {
+  const navigate = useNavigate();
   const { Reward, contract } = useRewardContext();
   const handleCoins = async (e) => {
     /* console.log(props.blogData);
@@ -33,6 +35,9 @@ const BlogCard = (props) => {
 
     const data = await Reward(props.blogData.publisher, 1);
   };
+  const handleNavigate = () => {
+    navigate("/Blog", { state: props.blogData });
+  };
 
   return (
     <div className={styles.blogCard}>
@@ -46,6 +51,7 @@ const BlogCard = (props) => {
           upvote
         </button>
         <button value={0}>downvote</button>
+        <button onClick={handleNavigate}>more</button>
       </div>
     </div>
   );
